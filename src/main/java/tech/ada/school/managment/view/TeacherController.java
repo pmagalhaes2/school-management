@@ -1,13 +1,15 @@
 package tech.ada.school.managment.view;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.ada.school.managment.domain.dto.v1.TeacherDTO;
-import tech.ada.school.managment.domain.service.ITeacherService;
+import tech.ada.school.managment.domain.service.teacher.ITeacherService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -34,13 +36,23 @@ public class TeacherController {
     }
 
     @PostMapping
-    public String createTeacher(@RequestBody TeacherDTO teacher) {
-        return service.createTeacher(teacher.getName());
+    public ResponseEntity<TeacherDTO> createTeacher(@RequestBody @Valid TeacherDTO teacher) {
+        TeacherDTO createdTeacher = service.createTeacher(teacher);
+        if (createdTeacher != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdTeacher);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PutMapping("/{id}")
-    public void updateTeacher(@PathVariable("id") UUID id, @RequestBody TeacherDTO teacher) {
-        service.updateTeacher(id, teacher.getName());
+    public ResponseEntity<TeacherDTO> updateTeacher(@PathVariable("id") UUID id, @RequestBody @Valid TeacherDTO teacher) {
+        TeacherDTO updatedTeacher = service.updateTeacher(id, teacher);
+        if (updatedTeacher != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(updatedTeacher);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @DeleteMapping("/{id}")
