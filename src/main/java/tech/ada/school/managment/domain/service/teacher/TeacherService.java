@@ -1,6 +1,7 @@
 package tech.ada.school.managment.domain.service.teacher;
 
 import org.springframework.stereotype.Service;
+import tech.ada.school.managment.domain.dto.exceptions.NotFoundException;
 import tech.ada.school.managment.domain.dto.v1.TeacherDTO;
 
 import java.util.ArrayList;
@@ -25,13 +26,13 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
-    public TeacherDTO getById(UUID id) {
+    public TeacherDTO getById(UUID id) throws NotFoundException {
         Optional<TeacherDTO> foundedTeacher = teachers.stream().filter(t -> t.getId().equals(id)).findFirst();
-        return foundedTeacher.orElse(null);
+        return foundedTeacher.orElseThrow(() -> new NotFoundException(TeacherDTO.class, String.valueOf(id)));
     }
 
     @Override
-    public TeacherDTO updateTeacher(UUID id, TeacherDTO teacherDTO) {
+    public TeacherDTO updateTeacher(UUID id, TeacherDTO teacherDTO) throws NotFoundException {
         final TeacherDTO foundedTeacher = getById(id);
         teachers.remove(foundedTeacher);
         final TeacherDTO updatedTeacher = new TeacherDTO(id, teacherDTO.getName());
@@ -40,7 +41,7 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
-    public void deleteTeacher(UUID id) {
+    public void deleteTeacher(UUID id) throws NotFoundException {
         final TeacherDTO foundedTeacher = getById(id);
         teachers.remove(foundedTeacher);
     }

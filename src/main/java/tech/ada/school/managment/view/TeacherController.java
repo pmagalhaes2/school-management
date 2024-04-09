@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tech.ada.school.managment.domain.dto.exceptions.NotFoundException;
 import tech.ada.school.managment.domain.dto.v1.TeacherDTO;
 import tech.ada.school.managment.domain.service.teacher.ITeacherService;
 
@@ -26,37 +27,31 @@ public class TeacherController {
     }
 
     @GetMapping
-    public List<TeacherDTO> getAll() {
-        return service.getAll();
+    public ResponseEntity<List<TeacherDTO>> getAll() {
+        return ResponseEntity.ok().body(service.getAll());
     }
 
     @GetMapping("/{id}")
-    public TeacherDTO getById(@PathVariable("id") UUID id) {
-        return service.getById(id);
+    public ResponseEntity<TeacherDTO> getById(@PathVariable("id") UUID id) throws NotFoundException {
+        TeacherDTO foundedTeacher = service.getById(id);
+        return ResponseEntity.ok().body(foundedTeacher);
     }
 
     @PostMapping
     public ResponseEntity<TeacherDTO> createTeacher(@RequestBody @Valid TeacherDTO teacher) {
         TeacherDTO createdTeacher = service.createTeacher(teacher);
-        if (createdTeacher != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdTeacher);
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdTeacher);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TeacherDTO> updateTeacher(@PathVariable("id") UUID id, @RequestBody @Valid TeacherDTO teacher) {
+    public ResponseEntity<TeacherDTO> updateTeacher(@PathVariable("id") UUID id, @RequestBody @Valid TeacherDTO teacher) throws NotFoundException {
         TeacherDTO updatedTeacher = service.updateTeacher(id, teacher);
-        if (updatedTeacher != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(updatedTeacher);
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(updatedTeacher);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTeacher(@PathVariable("id") UUID id) {
+    public ResponseEntity deleteTeacher(@PathVariable("id") UUID id) throws NotFoundException {
         service.deleteTeacher(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

@@ -1,5 +1,6 @@
 package tech.ada.school.managment.domain.service.teacher;
 
+import tech.ada.school.managment.domain.dto.exceptions.NotFoundException;
 import tech.ada.school.managment.domain.dto.v1.TeacherDTO;
 
 import java.util.List;
@@ -10,9 +11,9 @@ public interface ITeacherService {
 
     List<TeacherDTO> getAll();
 
-    TeacherDTO getById(UUID id);
+    TeacherDTO getById(UUID id) throws NotFoundException;
 
-    TeacherDTO updateTeacher(UUID id, TeacherDTO teacherDTO);
+    TeacherDTO updateTeacher(UUID id, TeacherDTO teacherDTO) throws NotFoundException;
 
-    void deleteTeacher(UUID id);
+    void deleteTeacher(UUID id) throws NotFoundException;
 }
