@@ -9,13 +9,11 @@ import tech.ada.school.managment.domain.entities.Teacher;
 import tech.ada.school.managment.domain.mappers.TeacherMapper;
 import tech.ada.school.managment.repositories.TeacherRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public class TeacherService implements ITeacherService {
-    private final List<TeacherDTO> teachers = new ArrayList<>();
     @Autowired
     private TeacherRepository repository;
 

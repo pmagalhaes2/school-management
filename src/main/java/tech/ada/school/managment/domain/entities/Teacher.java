@@ -22,6 +22,7 @@ import java.util.UUID;
 public class Teacher {
     @CreatedDate
     private LocalDateTime createdAt;
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
