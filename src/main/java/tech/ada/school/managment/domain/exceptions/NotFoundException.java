@@ -1,4 +1,4 @@
-package tech.ada.school.managment.domain.dto.exceptions;
+package tech.ada.school.managment.domain.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

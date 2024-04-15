@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tech.ada.school.managment.domain.dto.exceptions.NotFoundException;
+import tech.ada.school.managment.domain.exceptions.NotFoundException;
 import tech.ada.school.managment.domain.dto.v1.TeacherDTO;
 import tech.ada.school.managment.domain.service.teacher.ITeacherService;
 

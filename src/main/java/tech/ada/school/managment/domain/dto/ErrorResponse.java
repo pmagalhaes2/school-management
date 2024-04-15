@@ -3,7 +3,7 @@ package tech.ada.school.managment.domain.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import tech.ada.school.managment.domain.dto.exceptions.NotFoundException;
+import tech.ada.school.managment.domain.exceptions.NotFoundException;
 
 import java.util.Collection;
 import java.util.stream.Collectors;

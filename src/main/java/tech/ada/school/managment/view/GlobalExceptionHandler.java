@@ -6,7 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import tech.ada.school.managment.domain.dto.ErrorResponse;
-import tech.ada.school.managment.domain.dto.exceptions.NotFoundException;
+import tech.ada.school.managment.domain.exceptions.NotFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
