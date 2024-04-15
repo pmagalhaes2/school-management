@@ -11,7 +11,7 @@
 	<groupId>tech.ada</groupId>
 	<artifactId>school-managment</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>school-managment</name>
+	<name>school-management</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>

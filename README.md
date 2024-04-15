@@ -7,11 +7,11 @@ This is a simple CRUD application for managing students and teachers. It allows 
 
 [](https://github.com/pmagalhaes2/school-managment?tab=readme-ov-file#table-of-contents)
 
-- [Technologies](https://github.com/pmagalhaes2/school-managment?tab=readme-ov-file#technologies)
-- [Dependencies](https://github.com/pmagalhaes2/school-managment?tab=readme-ov-file#dependencies)
-- [Installation](https://github.com/pmagalhaes2/school-managment?tab=readme-ov-file#installation-and-usage)
-- [API Endpoints](https://github.com/pmagalhaes2/school-managment?tab=readme-ov-file#api-endpoints)
-- [Database](https://github.com/pmagalhaes2/school-managment?tab=readme-ov-file#database)
+- [Technologies](https://github.com/pmagalhaes2/school-management?tab=readme-ov-file#-technologies)
+- [Dependencies](https://github.com/pmagalhaes2/school-management?tab=readme-ov-file#%EF%B8%8F--dependencies)
+- [Installation](https://github.com/pmagalhaes2/school-management?tab=readme-ov-file#--installation--and-usage)
+- [API Endpoints](https://github.com/pmagalhaes2/school-management?tab=readme-ov-file#-api-endpoints)
+- [Database](https://github.com/pmagalhaes2/school-management?tab=readme-ov-file#database)
 
 
 ## 🚀 Technologies
