@@ -1,48 +1,56 @@
 package tech.ada.school.managment.domain.service.student;
 
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.ada.school.managment.domain.dto.v1.StudentDTO;
+import tech.ada.school.managment.domain.entities.Student;
+import tech.ada.school.managment.domain.exceptions.NotFoundException;
+import tech.ada.school.managment.domain.mappers.StudentMapper;
+import tech.ada.school.managment.repositories.StudentRepository;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public class StudentService implements IStudentService {
 
-    public final List<StudentDTO> students = new ArrayList<>();
+    @Autowired
+    private StudentRepository repository;
 
     @Override
-    public StudentDTO createStudent(StudentDTO student) {
-        StudentDTO newStudent = new StudentDTO(UUID.randomUUID(), student.getName());
-        students.add(newStudent);
-        return newStudent;
+    public StudentDTO createStudent(StudentDTO studentDTO) {
+        Student newStudent = StudentMapper.toEntity(studentDTO);
+        repository.save(newStudent);
+        return StudentMapper.toDto(newStudent);
     }
 
     @Override
     public List<StudentDTO> getAll() {
-        return students;
+        return repository.findAll()
+                .stream()
+                .map(StudentMapper::toDto)
+                .toList();
     }
 
     @Override
-    public StudentDTO getById(UUID id) {
-        Optional<StudentDTO> foundedStudent = students.stream().filter(s -> s.getId().equals(id)).findFirst();
-        return foundedStudent.orElse(null);
+    public StudentDTO getById(UUID id) throws NotFoundException {
+        return StudentMapper.toDto(repository.findById(id)
+                .orElseThrow(() -> new NotFoundException(StudentDTO.class, String.valueOf(id))));
     }
 
     @Override
-    public StudentDTO updateStudent(UUID id, StudentDTO student) {
+    @Transactional
+    public StudentDTO updateStudent(UUID id, StudentDTO student) throws NotFoundException {
         StudentDTO foundedStudent = getById(id);
-        students.remove(foundedStudent);
-        final StudentDTO updatedStudent = new StudentDTO(id, student.getName());
-        students.add(updatedStudent);
-        return updatedStudent;
+        foundedStudent.setName(student.getName());
+        return StudentMapper.toDto(repository.save(StudentMapper.toEntity(foundedStudent)));
     }
 
     @Override
-    public void deleteStudent(UUID id) {
+    @Transactional
+    public void deleteStudent(UUID id) throws NotFoundException {
         StudentDTO foundedStudent = getById(id);
-        students.remove(foundedStudent);
+        repository.delete(StudentMapper.toEntity(foundedStudent));
     }
 }

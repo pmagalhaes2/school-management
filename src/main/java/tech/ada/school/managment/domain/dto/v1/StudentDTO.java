@@ -1,5 +1,6 @@
 package tech.ada.school.managment.domain.dto.v1;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -8,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -16,6 +18,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @JsonIgnoreProperties
 public class StudentDTO {
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     UUID id;
 

@@ -1,6 +1,5 @@
 package tech.ada.school.managment.domain.entities;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,10 +15,10 @@ import java.util.UUID;
 
 @Entity
 @Getter
-@Table(name = "teachers")
+@Table(name = "students")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Teacher {
+public class Student {
     @CreatedDate
     private LocalDateTime createdAt;
 
@@ -28,5 +27,4 @@ public class Teacher {
     private UUID id;
 
     private String name;
-
 }

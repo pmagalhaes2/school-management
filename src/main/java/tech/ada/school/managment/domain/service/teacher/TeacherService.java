@@ -3,19 +3,17 @@ package tech.ada.school.managment.domain.service.teacher;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tech.ada.school.managment.domain.dto.exceptions.NotFoundException;
+import tech.ada.school.managment.domain.exceptions.NotFoundException;
 import tech.ada.school.managment.domain.dto.v1.TeacherDTO;
 import tech.ada.school.managment.domain.entities.Teacher;
 import tech.ada.school.managment.domain.mappers.TeacherMapper;
 import tech.ada.school.managment.repositories.TeacherRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public class TeacherService implements ITeacherService {
-    private final List<TeacherDTO> teachers = new ArrayList<>();
     @Autowired
     private TeacherRepository repository;
 

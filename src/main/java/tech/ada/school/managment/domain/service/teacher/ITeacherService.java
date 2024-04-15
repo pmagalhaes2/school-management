@@ -1,6 +1,6 @@
 package tech.ada.school.managment.domain.service.teacher;
 
-import tech.ada.school.managment.domain.dto.exceptions.NotFoundException;
+import tech.ada.school.managment.domain.exceptions.NotFoundException;
 import tech.ada.school.managment.domain.dto.v1.TeacherDTO;
 
 import java.util.List;
