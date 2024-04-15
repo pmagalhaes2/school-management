@@ -5,7 +5,7 @@ This is a simple CRUD application for managing students and teachers. It allows 
 
 ## Table of Contents
 
-[](https://github.com/pmagalhaes2/school-managment?tab=readme-ov-file#table-of-contents)
+[](https://github.com/pmagalhaes2/school-management?tab=readme-ov-file#table-of-contents)
 
 - [Technologies](https://github.com/pmagalhaes2/school-management?tab=readme-ov-file#-technologies)
 - [Dependencies](https://github.com/pmagalhaes2/school-management?tab=readme-ov-file#%EF%B8%8F--dependencies)
@@ -35,12 +35,12 @@ Before you begin, you will need to have the following tools installed on your ma
   
 # Clone this repository  
   
-$  git  clone  https://github.com/pmagalhaes2/school-managment.git
+$  git  clone  https://github.com/pmagalhaes2/school-management.git
   
   
 # Access the project folder in your terminal  
   
-$  cd  school-managment 
+$  cd  school-management 
   
   
 # Install dependencies with Maven  
