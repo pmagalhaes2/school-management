@@ -5,12 +5,13 @@ import tech.ada.school.management.domain.entities.Student;
 
 public class StudentMapper {
 
-    public static Student toEntity(StudentDTO dto) {
+    public static Student toEntity(StudentDTO dto, String activity) {
         return new Student(
                 dto.getCreatedAt(),
                 dto.getId(),
                 dto.getName(),
-                dto.getCpf()
+                dto.getCpf(),
+                activity
         );
     }
 
@@ -19,7 +20,8 @@ public class StudentMapper {
                 entity.getCreatedAt(),
                 entity.getId(),
                 entity.getName(),
-                entity.getCpf()
+                entity.getCpf(),
+                entity.getActivity()
         );
     }
 }

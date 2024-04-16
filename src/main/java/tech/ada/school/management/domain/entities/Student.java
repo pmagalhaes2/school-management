@@ -31,4 +31,6 @@ public class Student {
 
     @CPF
     private String cpf;
+
+    private String activity;
 }
