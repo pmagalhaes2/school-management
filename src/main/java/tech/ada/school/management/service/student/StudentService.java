@@ -1,4 +1,4 @@
-package tech.ada.school.management.domain.service.student;
+package tech.ada.school.management.service.student;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

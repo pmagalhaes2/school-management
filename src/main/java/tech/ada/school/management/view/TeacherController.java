@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.ada.school.management.domain.exceptions.NotFoundException;
 import tech.ada.school.management.domain.dto.v1.TeacherDTO;
-import tech.ada.school.management.domain.service.teacher.ITeacherService;
+import tech.ada.school.management.service.teacher.ITeacherService;
 
 import java.util.ArrayList;
 import java.util.List;

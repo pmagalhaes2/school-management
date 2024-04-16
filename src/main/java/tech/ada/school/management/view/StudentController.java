@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.ada.school.management.domain.dto.v1.StudentDTO;
 import tech.ada.school.management.domain.exceptions.NotFoundException;
-import tech.ada.school.management.domain.service.student.IStudentService;
+import tech.ada.school.management.service.student.IStudentService;
 
 import java.util.List;
 import java.util.UUID;

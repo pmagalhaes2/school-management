@@ -1,4 +1,4 @@
-package tech.ada.school.management.domain.service.teacher;
+package tech.ada.school.management.service.teacher;
 
 import tech.ada.school.management.domain.exceptions.NotFoundException;
 import tech.ada.school.management.domain.dto.v1.TeacherDTO;
