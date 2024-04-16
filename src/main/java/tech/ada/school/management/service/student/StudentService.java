@@ -41,9 +41,10 @@ public class StudentService implements IStudentService {
 
     @Override
     @Transactional
-    public StudentDTO updateStudent(UUID id, StudentDTO student) throws NotFoundException {
+    public StudentDTO updateStudent(UUID id, StudentDTO studentDTO) throws NotFoundException {
         StudentDTO foundedStudent = getById(id);
-        foundedStudent.setName(student.getName());
+        foundedStudent.setName(studentDTO.getName());
+        foundedStudent.setCpf(studentDTO.getCpf());
         return StudentMapper.toDto(repository.save(StudentMapper.toEntity(foundedStudent)));
     }
 

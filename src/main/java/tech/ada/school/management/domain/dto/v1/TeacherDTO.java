@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -22,7 +24,10 @@ public class TeacherDTO {
     private LocalDateTime createdAt = LocalDateTime.now();
     private UUID id;
 
-    @NotEmpty(message = "O nome não pode ser vazio")
-    @NotBlank(message = "O nome não pode estar em branco")
+    @NotEmpty
+    @NotBlank
     private String name;
+
+    @CPF
+    private String cpf;
 }

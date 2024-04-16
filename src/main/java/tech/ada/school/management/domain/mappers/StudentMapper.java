@@ -9,7 +9,8 @@ public class StudentMapper {
         return new Student(
                 dto.getCreatedAt(),
                 dto.getId(),
-                dto.getName()
+                dto.getName(),
+                dto.getCpf()
         );
     }
 
@@ -17,7 +18,8 @@ public class StudentMapper {
         return new StudentDTO(
                 entity.getCreatedAt(),
                 entity.getId(),
-                entity.getName()
+                entity.getName(),
+                entity.getCpf()
         );
     }
 }

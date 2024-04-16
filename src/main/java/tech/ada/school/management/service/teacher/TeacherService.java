@@ -43,6 +43,7 @@ public class TeacherService implements ITeacherService {
     public TeacherDTO updateTeacher(UUID id, TeacherDTO teacherDTO) throws NotFoundException {
         TeacherDTO foundedTeacher = getById(id);
         foundedTeacher.setName(teacherDTO.getName());
+        foundedTeacher.setCpf(teacherDTO.getCpf());
         return TeacherMapper.toDto(repository.save(TeacherMapper.toEntity(foundedTeacher)));
     }
 

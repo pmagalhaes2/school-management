@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,9 +22,12 @@ public class StudentDTO {
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    UUID id;
+    private UUID id;
 
-    @NotEmpty(message = "O nome não pode ser vazio")
-    @NotBlank(message = "O nome não pode estar em branco")
-    String name;
+    @NotEmpty
+    @NotBlank
+    private String name;
+
+    @CPF
+    private String cpf;
 }

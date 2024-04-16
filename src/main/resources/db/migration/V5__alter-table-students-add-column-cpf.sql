@@ -1,0 +1,1 @@
+ALTER TABLE students ADD cpf VARCHAR(11);

@@ -9,14 +9,16 @@ public class TeacherMapper {
         return new Teacher(
                 dto.getCreatedAt(),
                 dto.getId(),
-                dto.getName());
+                dto.getName(),
+                dto.getCpf());
     }
 
     public static TeacherDTO toDto(Teacher entity) {
         return new TeacherDTO(
                 entity.getCreatedAt(),
                 entity.getId(),
-                entity.getName()
+                entity.getName(),
+                entity.getCpf()
         );
     }
 }

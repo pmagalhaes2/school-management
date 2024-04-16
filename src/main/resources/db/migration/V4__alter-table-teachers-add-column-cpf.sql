@@ -1,0 +1,1 @@
+ALTER TABLE teachers ADD cpf VARCHAR(11);
