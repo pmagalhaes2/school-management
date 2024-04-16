@@ -57,6 +57,13 @@ $  \.mvnm spring-boot:run
 
 ##  📖 API Endpoints
 
+### Authentication
+
+To access the API endpoints for GET requests, no authentication is required. However, for POST, PUT, and DELETE requests, you need to authenticate using Basic Auth with the following credentials:
+
+- Username: admin
+- Password: admin
+
 The API provides the following endpoints:
 
 
