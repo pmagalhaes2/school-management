@@ -22,13 +22,14 @@ public class WebSecurityConfig {
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails user = User.withUsername("user")
+        UserDetails user = User.withDefaultPasswordEncoder()
+                .username("user")
                 .password("password")
                 .roles("USER")
                 .build();
 
         UserDetails admin = User.withDefaultPasswordEncoder()
-                .username(("admin"))
+                .username("admin")
                 .password("admin")
                 .roles("ADMIN")
                 .build();
@@ -49,10 +50,13 @@ public class WebSecurityConfig {
                                         new AntPathRequestMatcher("/v3/api-docs/**"),
                                         new AntPathRequestMatcher("/h2-console/**")
                                 )).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.GET)).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.POST, "/teachers")).hasAnyRole("ADMIN")
                                 .requestMatchers(antMatcher(HttpMethod.PUT, "/teachers/**")).hasAnyRole("ADMIN")
                                 .requestMatchers(antMatcher(HttpMethod.DELETE, "/teachers/**")).hasAnyRole("ADMIN")
-                                .requestMatchers(antMatcher(HttpMethod.GET, "/teachers/**")).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.POST, "/students")).hasAnyRole("ADMIN")
+                                .requestMatchers(antMatcher(HttpMethod.PUT, "/students/**")).hasAnyRole("ADMIN")
+                                .requestMatchers(antMatcher(HttpMethod.DELETE, "/students/**")).hasAnyRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults());
