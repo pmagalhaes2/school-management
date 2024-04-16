@@ -7,6 +7,7 @@ import tech.ada.school.management.domain.dto.v1.StudentDTO;
 import tech.ada.school.management.domain.entities.Student;
 import tech.ada.school.management.domain.exceptions.NotFoundException;
 import tech.ada.school.management.domain.mappers.StudentMapper;
+import tech.ada.school.management.external.FeignBoredApi;
 import tech.ada.school.management.repositories.StudentRepository;
 
 import java.util.List;
@@ -18,9 +19,13 @@ public class StudentService implements IStudentService {
     @Autowired
     private StudentRepository repository;
 
+    @Autowired
+    private FeignBoredApi boredApi;
+
     @Override
     public StudentDTO createStudent(StudentDTO studentDTO) {
-        Student newStudent = StudentMapper.toEntity(studentDTO);
+        String activity = boredApi != null ? boredApi.getActivity().activity() : null;
+        Student newStudent = StudentMapper.toEntity(studentDTO, activity);
         repository.save(newStudent);
         return StudentMapper.toDto(newStudent);
     }
@@ -45,13 +50,14 @@ public class StudentService implements IStudentService {
         StudentDTO foundedStudent = getById(id);
         foundedStudent.setName(studentDTO.getName());
         foundedStudent.setCpf(studentDTO.getCpf());
-        return StudentMapper.toDto(repository.save(StudentMapper.toEntity(foundedStudent)));
+        return StudentMapper.toDto(
+                repository.save(StudentMapper.toEntity(foundedStudent, foundedStudent.getActivity())));
     }
 
     @Override
     @Transactional
     public void deleteStudent(UUID id) throws NotFoundException {
         StudentDTO foundedStudent = getById(id);
-        repository.delete(StudentMapper.toEntity(foundedStudent));
+        repository.delete(StudentMapper.toEntity(foundedStudent, foundedStudent.getActivity()));
     }
 }

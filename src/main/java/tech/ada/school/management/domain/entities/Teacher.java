@@ -28,4 +28,6 @@ public class Teacher {
 
     @CPF
     private String cpf;
+
+    private String activity;
 }

@@ -3,10 +3,11 @@ package tech.ada.school.management.service.teacher;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tech.ada.school.management.domain.exceptions.NotFoundException;
 import tech.ada.school.management.domain.dto.v1.TeacherDTO;
 import tech.ada.school.management.domain.entities.Teacher;
+import tech.ada.school.management.domain.exceptions.NotFoundException;
 import tech.ada.school.management.domain.mappers.TeacherMapper;
+import tech.ada.school.management.external.FeignBoredApi;
 import tech.ada.school.management.repositories.TeacherRepository;
 
 import java.util.List;
@@ -17,11 +18,14 @@ public class TeacherService implements ITeacherService {
     @Autowired
     private TeacherRepository repository;
 
+    @Autowired
+    private FeignBoredApi boredApi;
+
     @Override
     public TeacherDTO createTeacher(TeacherDTO teacherDTO) {
-        Teacher newTeacher = TeacherMapper.toEntity(teacherDTO);
-        repository.save(newTeacher);
-        return TeacherMapper.toDto(newTeacher);
+        String activity = boredApi != null ? boredApi.getActivity().activity() : null;
+        Teacher newTeacher = TeacherMapper.toEntity(teacherDTO, activity);
+        return TeacherMapper.toDto(repository.save(newTeacher));
     }
 
     @Override
@@ -44,13 +48,14 @@ public class TeacherService implements ITeacherService {
         TeacherDTO foundedTeacher = getById(id);
         foundedTeacher.setName(teacherDTO.getName());
         foundedTeacher.setCpf(teacherDTO.getCpf());
-        return TeacherMapper.toDto(repository.save(TeacherMapper.toEntity(foundedTeacher)));
+        return TeacherMapper.toDto(repository.save(TeacherMapper.toEntity(foundedTeacher,
+                foundedTeacher.getActivity())));
     }
 
     @Override
     @Transactional
     public void deleteTeacher(UUID id) throws NotFoundException {
         TeacherDTO foundedTeacher = getById(id);
-        repository.delete(TeacherMapper.toEntity(foundedTeacher));
+        repository.delete(TeacherMapper.toEntity(foundedTeacher, foundedTeacher.getActivity()));
     }
 }

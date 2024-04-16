@@ -5,12 +5,13 @@ import tech.ada.school.management.domain.entities.Teacher;
 
 public class TeacherMapper {
 
-    public static Teacher toEntity(TeacherDTO dto) {
+    public static Teacher toEntity(TeacherDTO dto, String activity) {
         return new Teacher(
                 dto.getCreatedAt(),
                 dto.getId(),
                 dto.getName(),
-                dto.getCpf());
+                dto.getCpf(),
+                activity);
     }
 
     public static TeacherDTO toDto(Teacher entity) {
@@ -18,7 +19,8 @@ public class TeacherMapper {
                 entity.getCreatedAt(),
                 entity.getId(),
                 entity.getName(),
-                entity.getCpf()
+                entity.getCpf(),
+                entity.getActivity()
         );
     }
 }
